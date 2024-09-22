@@ -54,11 +54,16 @@ namespace HerfaTest.TestMethod
                 usercartPage.ClickPayButton();
 
                 Thread.Sleep(5000);
-                var expectedURL = "https://localhost:44349/User/ShoppingCart";
-                var actualUrl = ManageDriver.driver.Url;
-                Assert.AreEqual(expectedURL, actualUrl, "succesful test case");
-                Console.WriteLine("TC Completed Successfully");
-            }
+
+				CommonMethods.NavigateToURL("https://localhost:44349/User/ShoppingCart");
+
+				IWebElement errorMessageElement = ManageDriver.driver.FindElement(By.XPath("/html/body/div[1]/div[1]/div/div/div[2]/h5"));
+
+				var expectedMessage = "The operation was performed successfully";
+				var actualMessage = errorMessageElement.Text;
+				Assert.AreEqual(expectedMessage, actualMessage, "The error message does not match the expected result");
+				Console.WriteLine("TC Completed Successfully");
+			}
             catch (NoSuchElementException ex)
             {
 

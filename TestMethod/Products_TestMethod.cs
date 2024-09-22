@@ -12,13 +12,13 @@ namespace HerfaTest.TestMethod
     [TestClass]
     public class Products_TestMethod
     {
-        [TestInitialize]
-        public static void ClassInitialize(TestContext testContext)
+		[ClassInitialize]
+		public static  void ClassInitialize(TestContext testContext)
         {
             ManageDriver.MaximizeDriver();
         }
 
-        [TestCleanup]
+        [ClassCleanup]
 
         public static void ClassCleanup() 
         {
@@ -36,12 +36,12 @@ namespace HerfaTest.TestMethod
 
                 ProductsPage productsPage = new ProductsPage(ManageDriver.driver);
 
-                Thread.Sleep(3000);
+                Thread.Sleep(5000);
                 productsPage.ClickaddProduct1();
                 productsPage.ClickaddProduct2();
                 productsPage.ClickShippingIcon();
 
-                Thread.Sleep(3000);
+                Thread.Sleep(5000);
 
                 var expectedUrl = "https://localhost:44349/User/ShoppingCart";
                 var actualUrl = ManageDriver.driver.Url;

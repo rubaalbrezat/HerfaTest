@@ -1,6 +1,7 @@
 ﻿using HerfaTest.Helpers;
 using HerfaTest.POM;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,14 @@ namespace HerfaTest.TestMethod
     [TestClass]
     public class ShoppingCart_TestMethod
     {
-        [TestInitialize]
+        [ClassInitialize]
 
         public static void ClassInitialaize(TestContext testContext)
         {
             ManageDriver.MaximizeDriver();
         }
 
-        [TestCleanup]
+        [ClassCleanup]
 
         public static void ClassCleanup()
         {
@@ -36,8 +37,15 @@ namespace HerfaTest.TestMethod
 
                 ShoppingCartPage shoppingCartPage = new ShoppingCartPage(ManageDriver.driver);
 
-                Thread.Sleep(5000);
-                shoppingCartPage.ClickCheckoutButton();
+
+               /* Thread.Sleep(10000);*/
+
+				WebDriverWait wait = new WebDriverWait(ManageDriver.driver, TimeSpan.FromSeconds(10));
+				wait.Until(d => ((IJavaScriptExecutor)d).ExecuteScript("return document.readyState").Equals("complete"));
+
+				
+
+				shoppingCartPage.ClickCheckoutButton();
 
                 Thread.Sleep(5000);
 
@@ -68,3 +76,8 @@ namespace HerfaTest.TestMethod
         }
     }
 }
+
+
+
+
+
