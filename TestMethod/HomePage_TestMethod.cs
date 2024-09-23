@@ -34,7 +34,7 @@ namespace HerfaTest.TestMethod
                 Login_TestMethod loginMethod = new Login_TestMethod();
                 loginMethod.LoginMethod();
 
-                CommonMethods.NavigateToURL("https://localhost:44349/User");
+                
 
                 HomePage homePage = new HomePage(ManageDriver.driver);
                 homePage.CllickProductLink();

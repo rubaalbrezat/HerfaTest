@@ -24,6 +24,7 @@ namespace HerfaTest.POM
         By PayButton = By.XPath("//button[@type=\"submit\"]");
         By rememberMeCheack = By.XPath("//input[@type=\"checkbox\"]");
         By backLink = By.XPath("/html/body/div[1]/section[2]/div/div/div/div/form/a");
+        
 
 
         public void EnterCardHolder(string value)
@@ -42,10 +43,6 @@ namespace HerfaTest.POM
             _driver.FindElement(cvv).SendKeys(value);
         }
 
-        /* public void EnterExpireDate(string value)
-         {
-             _driver.FindElement(expirteDate).SendKeys(value);
-         }*/
 
         public void EnterExpireDate(string expireDate)
         {
