@@ -13,39 +13,36 @@ namespace HerfaTest.TestMethod
     [TestClass]
     public class ShoppingCart_TestMethod
     {
-        [ClassInitialize]
 
-        public static void ClassInitialaize(TestContext testContext)
-        {
-            ManageDriver.MaximizeDriver();
-        }
+		[ClassInitialize]
+		public static void ClassInitialize(TestContext testContext)
+		{
+			ManageDriver.MaximizeDriver();
+		}
 
-        [ClassCleanup]
+		[ClassCleanup]
 
-        public static void ClassCleanup()
-        {
-            ManageDriver.CloseDriver();
-        }
+		public static void ClassCleanup()
+		{
+			ManageDriver.CloseDriver();
+		}
 
-        [TestMethod]
-        public void ShoppingMethod()
+		[TestMethod]
+		public  void ShoppingMethod()
         {
             try
             {
                 Products_TestMethod productPage = new Products_TestMethod();
                 productPage.ProductPageMethod();
-
-                ShoppingCartPage shoppingCartPage = new ShoppingCartPage(ManageDriver.driver);
-
-
-               /* Thread.Sleep(10000);*/
-
-				WebDriverWait wait = new WebDriverWait(ManageDriver.driver, TimeSpan.FromSeconds(10));
-				wait.Until(d => ((IJavaScriptExecutor)d).ExecuteScript("return document.readyState").Equals("complete"));
-
 				
 
-				shoppingCartPage.ClickCheckoutButton();
+				ShoppingCartPage shoppingCartPage = new ShoppingCartPage(ManageDriver.driver);
+
+
+                Thread.Sleep(5000);
+     
+
+                shoppingCartPage.ClickCheckoutButton();
 
                 Thread.Sleep(5000);
 

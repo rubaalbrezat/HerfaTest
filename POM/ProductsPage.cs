@@ -23,7 +23,7 @@ namespace HerfaTest.POM
         public void ClickaddProduct1()
         {
             _driver.FindElement(Product1).Click();
-        }0
+        }
 
         public void ClickaddProduct2()
         {

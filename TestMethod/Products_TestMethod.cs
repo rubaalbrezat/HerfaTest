@@ -34,7 +34,9 @@ namespace HerfaTest.TestMethod
                 HomePage_TestMethod homepage = new HomePage_TestMethod();
                 homepage.HomePageMethod();
 
-                ProductsPage productsPage = new ProductsPage(ManageDriver.driver);
+				
+
+				ProductsPage productsPage = new ProductsPage(ManageDriver.driver);
 
                 Thread.Sleep(5000);
                 productsPage.ClickaddProduct1();

@@ -16,7 +16,7 @@ namespace HerfaTest.POM
             _driver = driver;
         }
 
-        By checkoutButton = By.XPath("//a[@href=\"/User/PayForTheOrder\"]");
+        By checkoutButton = By.XPath("//a[@href='/User/PayForTheOrder']");
 
         public void ClickCheckoutButton()
         {

@@ -37,8 +37,7 @@ namespace HerfaTest.TestMethod
                 ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
                 shoppingCart.ShoppingMethod();
 
-              
- 
+
                 CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
 
 
@@ -55,9 +54,9 @@ namespace HerfaTest.TestMethod
 
                 Thread.Sleep(5000);
 
-				CommonMethods.NavigateToURL("https://localhost:44349/User/ShoppingCart");
+		
 
-				IWebElement errorMessageElement = ManageDriver.driver.FindElement(By.XPath("/html/body/div[1]/div[1]/div/div/div[2]/h5"));
+				IWebElement errorMessageElement = ManageDriver.driver.FindElement(By.XPath("//div[@class='modal-body']//h5"));
 
 				var expectedMessage = "The operation was performed successfully";
 				var actualMessage = errorMessageElement.Text;
@@ -92,9 +91,10 @@ namespace HerfaTest.TestMethod
             try {
                 ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
                 shoppingCart.ShoppingMethod();
+              
 
 
-                CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
+				CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
 
 
                 Thread.Sleep(5000);
@@ -141,12 +141,12 @@ namespace HerfaTest.TestMethod
         public void InvalidCardNumberfield()
         {
             try {
-                ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
-                shoppingCart.ShoppingMethod();
+				Login_TestMethod loginpage = new Login_TestMethod();
+				loginpage.LoginMethod();
 
 
 
-                CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
+				CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
 
 
                 Thread.Sleep(5000);
@@ -155,7 +155,7 @@ namespace HerfaTest.TestMethod
 
 
                 usercartPage.EnterCardHolder("BatoolJarrah");
-                usercartPage.EnterCardNumber("55556666777789077");
+                usercartPage.EnterCardNumber("5555666677778904");
                 usercartPage.EnterCvv("379");
                 usercartPage.EnterExpireDate("2025-03");
                 usercartPage.ClickPayButton();
@@ -196,7 +196,7 @@ namespace HerfaTest.TestMethod
                 ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
                 shoppingCart.ShoppingMethod();
 
-               
+
 
                 CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
 
@@ -208,7 +208,7 @@ namespace HerfaTest.TestMethod
 
                 usercartPage.EnterCardHolder("BatoolJarrah");
                 usercartPage.EnterCardNumber("5555666677778907");
-                usercartPage.EnterCvv("3794");
+                usercartPage.EnterCvv("379");
                 usercartPage.EnterExpireDate("2025-03");
                 usercartPage.ClickPayButton();
 
@@ -349,10 +349,11 @@ namespace HerfaTest.TestMethod
         {
             try
             {
-				ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
-				shoppingCart.ShoppingMethod();
+                ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
+                shoppingCart.ShoppingMethod();
 
-				CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
+
+                CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
 
 
                 Thread.Sleep(5000);
@@ -417,8 +418,9 @@ namespace HerfaTest.TestMethod
         {
             try
             {
-				ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
-				shoppingCart.ShoppingMethod();
+                ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
+                shoppingCart.ShoppingMethod();
+            
 
 				CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
 
@@ -515,10 +517,11 @@ namespace HerfaTest.TestMethod
         {
             try
             {
-				ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
-				shoppingCart.ShoppingMethod();
+                ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
+                shoppingCart.ShoppingMethod();
 
-				CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
+
+                CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
 
 
                 Thread.Sleep(5000);
@@ -529,7 +532,7 @@ namespace HerfaTest.TestMethod
                 usercartPage.EnterCardHolder(" ");
                 usercartPage.EnterCardNumber(" ");
                 usercartPage.EnterCvv(" ");
-                usercartPage.EnterExpireDate("");
+                usercartPage.EnterExpireDate(" ");
                 usercartPage.ClickPayButton();
 
                 Thread.Sleep(5000);
@@ -567,8 +570,9 @@ namespace HerfaTest.TestMethod
         {
             try
             {
-				ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
-				shoppingCart.ShoppingMethod();
+                ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
+                shoppingCart.ShoppingMethod();
+              
 
 				CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
 
@@ -613,5 +617,111 @@ namespace HerfaTest.TestMethod
 
             }
         }
-    }
+
+        [TestMethod]
+		public void InvalidFormatCardNumberfield()
+		{
+			try
+			{
+                ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
+                shoppingCart.ShoppingMethod();
+
+              
+
+				CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
+
+
+				Thread.Sleep(5000);
+
+				CartPage usercartPage = new CartPage(ManageDriver.driver);
+
+
+				usercartPage.EnterCardHolder("BatoolJarrah");
+				usercartPage.EnterCardNumber("876543217guikjb");
+				usercartPage.EnterCvv("379");
+				usercartPage.EnterExpireDate("2025-03");
+				usercartPage.ClickPayButton();
+
+				Thread.Sleep(5000);
+				var expectedURL = "https://localhost:44349/User/PayForTheOrder";
+				var actualUrl = ManageDriver.driver.Url;
+				Assert.AreEqual(expectedURL, actualUrl, "succesful test case");
+				Console.WriteLine("TC Completed Successfully");
+			}
+			catch (NoSuchElementException ex)
+			{
+
+				Console.WriteLine("Element not found: " + ex.Message);
+				Assert.Fail("Element not found during the payment process");
+			}
+			catch (WebDriverException ex)
+			{
+
+				Console.WriteLine("WebDriver error: " + ex.Message);
+				Assert.Fail("WebDriver error occurred");
+			}
+			catch (Exception ex)
+			{
+
+				Console.WriteLine("An error occurred: " + ex.Message);
+				Assert.Fail("Test case failed: An unexpected error occurred.");
+
+			}
+		}
+
+        [TestMethod]
+		public void InvalidFormatCvvfield()
+		{
+			try
+			{
+                ShoppingCart_TestMethod shoppingCart = new ShoppingCart_TestMethod();
+                shoppingCart.ShoppingMethod();
+
+
+
+                CommonMethods.NavigateToURL("https://localhost:44349/User/PayForTheOrder");
+
+
+				Thread.Sleep(5000);
+
+				CartPage usercartPage = new CartPage(ManageDriver.driver);
+
+
+				usercartPage.EnterCardHolder("BatoolJarrah");
+				usercartPage.EnterCardNumber("5555666677778907");
+				usercartPage.EnterCvv("3794");
+				usercartPage.EnterExpireDate("2025-03");
+				usercartPage.ClickPayButton();
+
+				Thread.Sleep(5000);
+				var expectedURL = "https://localhost:44349/User/PayForTheOrder";
+				var actualUrl = ManageDriver.driver.Url;
+				Assert.AreEqual(expectedURL, actualUrl, "succesful test case");
+				Console.WriteLine("TC Completed Successfully");
+			}
+			catch (NoSuchElementException ex)
+			{
+
+				Console.WriteLine("Element not found: " + ex.Message);
+				Assert.Fail("Element not found during the payment process");
+			}
+			catch (WebDriverException ex)
+			{
+
+				Console.WriteLine("WebDriver error: " + ex.Message);
+				Assert.Fail("WebDriver error occurred");
+			}
+			catch (Exception ex)
+			{
+
+				Console.WriteLine("An error occurred: " + ex.Message);
+				Assert.Fail("Test case failed: An unexpected error occurred.");
+
+			}
+		}
+
+        
+
+       
+	}
 }
